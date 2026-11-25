@@ -1,0 +1,252 @@
+{
+  "info": {
+    "name": "OU Libraries Digital Repository (Islandora)",
+    "description": "University of Oklahoma Libraries digital repository (Islandora 7): OAI-PMH and object datastreams. No key. Holds digitised Western History Collections material (e.g. the printed record of The Chickasaw Nation vs. John P. Holder et al., Cornish Collection).",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "OAI-PMH (live-tested 2026-11-25)",
+      "item": [
+        {
+          "name": "Identify",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://repository.ou.edu/oai2?verb=Identify",
+              "protocol": "https",
+              "host": [
+                "repository",
+                "ou",
+                "edu"
+              ],
+              "path": [
+                "oai2"
+              ],
+              "query": [
+                {
+                  "key": "verb",
+                  "value": "Identify"
+                }
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "List sets",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://repository.ou.edu/oai2?verb=ListSets",
+              "protocol": "https",
+              "host": [
+                "repository",
+                "ou",
+                "edu"
+              ],
+              "path": [
+                "oai2"
+              ],
+              "query": [
+                {
+                  "key": "verb",
+                  "value": "ListSets"
+                }
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "List records in a set (Dublin Core)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://repository.ou.edu/oai2?verb=ListRecords&metadataPrefix=oai_dc&set={{set}}",
+              "protocol": "https",
+              "host": [
+                "repository",
+                "ou",
+                "edu"
+              ],
+              "path": [
+                "oai2"
+              ],
+              "query": [
+                {
+                  "key": "verb",
+                  "value": "ListRecords"
+                },
+                {
+                  "key": "metadataPrefix",
+                  "value": "oai_dc"
+                },
+                {
+                  "key": "set",
+                  "value": "{{set}}"
+                }
+              ]
+            },
+            "description": "Paginate with resumptionToken."
+          }
+        },
+        {
+          "name": "Get one record (Dublin Core)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://repository.ou.edu/oai2?verb=GetRecord&metadataPrefix=oai_dc&identifier=oai:repository.ou.edu:{{pid_underscore}}",
+              "protocol": "https",
+              "host": [
+                "repository",
+                "ou",
+                "edu"
+              ],
+              "path": [
+                "oai2"
+              ],
+              "query": [
+                {
+                  "key": "verb",
+                  "value": "GetRecord"
+                },
+                {
+                  "key": "metadataPrefix",
+                  "value": "oai_dc"
+                },
+                {
+                  "key": "identifier",
+                  "value": "oai:repository.ou.edu:{{pid_underscore}}"
+                }
+              ]
+            },
+            "description": "pid_underscore like oku_31884."
+          }
+        }
+      ],
+      "description": ""
+    },
+    {
+      "name": "Object datastreams (live-tested)",
+      "item": [
+        {
+          "name": "Object page",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://repository.ou.edu/islandora/object/{{pid}}",
+              "protocol": "https",
+              "host": [
+                "repository",
+                "ou",
+                "edu"
+              ],
+              "path": [
+                "islandora",
+                "object",
+                "{{pid}}"
+              ]
+            },
+            "description": "pid like oku:31884 (URL-encode the colon as %3A)."
+          }
+        },
+        {
+          "name": "MODS metadata (XML)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://repository.ou.edu/islandora/object/{{pid}}/datastream/MODS/view",
+              "protocol": "https",
+              "host": [
+                "repository",
+                "ou",
+                "edu"
+              ],
+              "path": [
+                "islandora",
+                "object",
+                "{{pid}}",
+                "datastream",
+                "MODS",
+                "view"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "Dublin Core (XML)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://repository.ou.edu/islandora/object/{{pid}}/datastream/DC/view",
+              "protocol": "https",
+              "host": [
+                "repository",
+                "ou",
+                "edu"
+              ],
+              "path": [
+                "islandora",
+                "object",
+                "{{pid}}",
+                "datastream",
+                "DC",
+                "view"
+              ]
+            },
+            "description": ""
+          }
+        },
+        {
+          "name": "OCR text (if present)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://repository.ou.edu/islandora/object/{{pid}}/datastream/OCR/view",
+              "protocol": "https",
+              "host": [
+                "repository",
+                "ou",
+                "edu"
+              ],
+              "path": [
+                "islandora",
+                "object",
+                "{{pid}}",
+                "datastream",
+                "OCR",
+                "view"
+              ]
+            },
+            "description": "Page objects only; book objects list their pages on the object page."
+          }
+        }
+      ],
+      "description": ""
+    }
+  ],
+  "variable": [
+    {
+      "key": "pid",
+      "value": "oku%3A31884"
+    },
+    {
+      "key": "pid_underscore",
+      "value": "oku_31884"
+    },
+    {
+      "key": "set",
+      "value": ""
+    }
+  ]
+}
